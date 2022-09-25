@@ -8,15 +8,88 @@
     <title>線上訂餐(管理員)</title>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
     <style>
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+        html,
+        body {
+            background-color: #2C5D63;
+            font-family: "Noto Sans TC", sans-serif !important;
+            color: #DFEBED;
+            font-weight: bold;
+        }
+        
+        div {
+            margin-top: 3vh;
+            margin-left: 2vh;
+            font-size: 6vw;
+            font-family: "Noto Sans TC", sans-serif !important;
+            font-weight: 1000;
+        }
+        
+        button {
+            width: 18vw;
+            height: 5vw;
+            font-size: 3vw;
+            background: #ccc;
+            font-family: "Noto Sans TC", sans-serif !important;
+            font-weight: 1000;
+            border: 0 none;
+            cursor: pointer;
+            -webkit-border-radius: 5vw;
+            border-radius: 5vw;
+        }
+        
         input {
-            width: 300px;
-            font-size: 15px;
-            margin: 2px 0;
-            padding: 2px 5px;
+            margin-top: 1vh;
+            margin-left: 1vh;
+            width: 20vw;
+            height: 4vw;
+            font-size: 3vw;
+            border: 2px black solid;
+            font-family: "Noto Sans TC", sans-serif !important;
+            font-weight: 1000;
+        }
+        
+        label {
+            font-size: 8vw;
+            font-family: "Noto Sans TC", sans-serif !important;
+            font-weight: 1000;
+        }
+        
+        h1 {
+            margin-top: 3vh;
+            margin-left: 3vh;
+            font-size: 10vw;
+            font-family: "Noto Sans TC", sans-serif !important;
+            font-weight: 1000;
+        }
+        
+        h3 {
+            margin-top: 3vh;
+            margin-left: 3vh;
+            font-size: 4vw;
+            font-family: "Noto Sans TC", sans-serif !important;
+            font-weight: 1000;
+        }
+        
+        input[type="radio"] {
+            margin-top: 1vh;
+            margin-left: 3vh;
+            width: 7vw;
+            height: 7vw;
+            padding: 5px 15px;
+            font-weight: 1000;
         }
         
         .c1 {
             display: inline;
+        }
+        
+        .cancelfood {
+            width: 5vw;
+        }
+        
+        .foodInput {
+            width: 40vw;
         }
     </style>
     <script>
@@ -204,7 +277,7 @@
             e.pop();
             f = f.split(",");
             for (let i = 0; i < 37; i++) {
-                le.innerHTML += `<h3 class='c1'>${a[i]}號 ${e[i]} 餘額:${f[i]}</h3><input id='t${i}' data-balance='${f[i]}' data-number='${a[i]}' type='text' placeholder='儲值金額'><br>`;
+                le.innerHTML += `<input id='t${i}' data-balance='${f[i]}' data-number='${a[i]}' type='text' placeholder='儲值金額'><h3 class='c1'>${a[i]}號 ${e[i]} 餘額:${f[i]}</h3><br>`;
             }
             le.innerHTML += `<button onclick='BtnStored()'>充值</button>`
         }
@@ -247,7 +320,7 @@
                 } else {
                     in1 = ``
                 }
-                le.innerHTML += `<input class='foodInput' id='tt${i}' tpye='text' placeholder='請輸入: 食物_價格' value='${in1}'><button data-index='tt${i}' onclick='document.getElementById(event.target.dataset.index).value = "";'>-</button><br>`
+                le.innerHTML += `<input class='foodInput' id='tt${i}' tpye='text' placeholder='請輸入: 食物_價格' value='${in1}'><button class="cancelfood" data-index='tt${i}' onclick='document.getElementById(event.target.dataset.index).value = "";'>-</button><br>`
             }
             le.innerHTML += "<button onclick='CreateFoodlist()'>送出</button>"
         }
@@ -278,9 +351,9 @@
 
         function CopyBoard() {
             let le = document.getElementById('d3');
-            const copyList = ['熱狗_50', '煎餃_55', '蛋餅_45']
+            const copyList = [] //foodlisthere
             for (let i = 0; i < copyList.length; i++) {
-                le.innerHTML += `<h3 class='c1''>${copyList[i]}</h3><button class='c1' data-save='${copyList[i]}' onclick='Copyset()'>+</button><br>`;
+                le.innerHTML += `<h3 class='c1''>${copyList[i]}</h3><button class='c1 cancelfood' data-save='${copyList[i]}' onclick='Copyset()'>+</button><br>`;
             }
         }
 
